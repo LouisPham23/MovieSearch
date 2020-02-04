@@ -5,7 +5,7 @@ import Modal from "@material-ui/core/Modal";
 import Backdrop from "@material-ui/core/Backdrop";
 import Fade from "@material-ui/core/Fade";
 
-const Details = ({ handleClose, handleOpen, open }) => {
+const Details = ({ handleClose, handleOpen, open, props }) => {
   const useStyles = makeStyles(theme => ({
     modal: {
       display: "flex",
@@ -40,25 +40,22 @@ const Details = ({ handleClose, handleOpen, open }) => {
       >
         <Fade in={open}>
           <div className={classes.paper}>
-            <h2 id="transition-modal-title">Transition modal</h2>
-            <p id="transition-modal-description">
-              react-transition-group animates me.
-            </p>
+            {/* <div>
+              <h3>{props.Title}</h3>
+              <img src={props.Poster} alt="title: link" />
+              <h3>{props.Rated}</h3>
+              <h4>{props.Year}</h4>
+              <h5>{props.Released}</h5>
+              <h6>{props.Genre}</h6>
+              <h6>{props.Actor}</h6>
+              <p>{props.Plot}</p>
+              <h6>{props.imdbRating}</h6>
+            </div> */}
+            <h1>Hello modal</h1>
           </div>
         </Fade>
       </Modal>
     </div>
-    // <div>
-    //   <h3>{props.Title}</h3>
-    //   <img src={props.Poster} alt="title: link" />
-    //   <h3>{props.Rated}</h3>
-    //   <h4>{props.Year}</h4>
-    //   <h5>{props.Released}</h5>
-    //   <h6>{props.Genre}</h6>
-    //   <h6>{props.Actor}</h6>
-    //   <p>{props.Plot}</p>
-    //   <h6>{props.imdbRating}</h6>
-    // </div>
   );
 };
 

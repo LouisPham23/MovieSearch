@@ -4,7 +4,6 @@ import "./App.css";
 //Components
 import Header from "../src/components/Header";
 import Search from "../src/components/Search";
-import Movie from "../src/components/Movie";
 import Details from "./components/Details";
 import Movies from "./components/Movies";
 
@@ -41,20 +40,24 @@ function App() {
     fetch(`http://www.omdbapi.com/?s=${searchValue}&apikey=63c247fd`)
       .then(res => res.json())
       .then(data => {
+        console.log("data response", data.Response);
         if (data.Response === "True") {
-          setMovies([...data.Search]);
+          const newMoview = data.Search;
+
+          setMovies(newMoview);
           setLoading(false);
+          setErrorMess({});
         } else {
           setErrorMess(data);
-          let movies = [];
-          setMovies([...movies]);
           setLoading(false);
         }
       })
-      .catch(err => setErrorMess(err));
+      .catch(err => console.log(err));
   };
 
   const showDetails = id => {
+    console.log("hello");
+
     fetch(`http://www.omdbapi.com/?i=${id}&apikey=63c247fd`)
       .then(res => res.json())
       .then(data => {
@@ -69,9 +72,6 @@ function App() {
       .catch(err => setErrorMess(err));
   };
 
-  // const renderFeatured = () => {
-  //   <Details />;
-  // };
   return (
     <>
       <Header title="OMDB" />
@@ -89,7 +89,7 @@ function App() {
       ) : (
         <div>
           <div className="movies">
-            <Movies movies={movies} />
+            <Movies movies={movies} clicked={showDetails} />
           </div>
           <Details
             handleClose={handleClose}
